@@ -1,0 +1,539 @@
+inside command prompt:
+
+1.npm install @angular/cli
+
+2.npm install ng
+
+3.ng new app22
+
+4.cd app22
+
+5.ng serve -o          //to run server
+
+6.ctrl+c //to come out
+
+7.ng generate component first
+
+8.ng generate component second
+
+
+
+app.component.html
+--------------------
+<h1>Angular Router App</h1>
+
+<nav>
+  <ul>
+    <li><a routerLink="/first-component" routerLinkActive="active">First</a></li>
+    <li><a routerLink="/second-component" routerLinkActive="active">Second</a></li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
+
+
+app-routing.module.ts
+----------------------
+
+remove const routes: Routes = [];
+and paste it
+
+import { FirstComponent } from './first/first.component';
+import { SecondComponent } from './second/second.component';
+const routes: Routes = [
+  { path: 'first-component', component: FirstComponent },
+  { path: 'second-component', component: SecondComponent },
+];
+
+
+#########################################################
+user.js(for all):
+
+const mongoose=require('mongoose');
+const Schema=mongoose.Schema;
+const userSchema=new Schema(
+    {
+username : {type:String},
+password : {type:String},
+age : {type:Number},
+mobile : {type:Number}
+}
+);
+
+module.exports=mongoose.model("user",userSchema);
+
+
+exp- 7,8,9
+#########################################################
+user.js
+
+const mongoose=require('mongoose');
+const Schema=mongoose.Schema;
+const userSchema=new Schema(
+    {
+username : {type:String},
+password : {type:String},
+age : {type:Number},
+mobile : {type:Number}
+}
+);
+
+module.exports=mongoose.model("user",userSchema);
+#########################################################
+magic.js
+
+$(document).ready(function(){
+    $("form#change").on('submit', function(e){
+        e.preventDefault();
+        var data = $('input[name=name]').val();
+        $.ajax({
+            type: 'post',
+            url: '/ajax',
+            data: data,
+            dataType: 'text'
+        })
+        .done(function(data){
+            $('h1').html(data.name);
+        });
+    });
+});
+
+#########################################################
+ajax.pug(exp-9)
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Login
+        style 
+            include ./my.css
+        script(src="http://code.jquery.com/jquery-3.1.0.min.js")
+        script(src="../public/magic.js")
+        include ./index.pug
+    body 
+        div(class='container')    
+            form(method="post" id="change" align="center")
+                input(type='text', placeholder='search user', name='name')
+                input(type="submit", value="Search")
+                br
+                a(href="") All 
+                a(href="") images 
+                a(href="") Latest 
+                a(href="") News 
+                h1 User Details
+                p !{name}
+#########################################################
+index.pug:
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title index page
+        style 
+            include ./my.css
+    body 
+        div(class='header')
+            h1 Login and Registration APP 
+            a(href="/Login") Login 
+            a(href="/Register") Register
+            a(href="/ajax") Search User
+
+#########################################################
+login.pug(exp-7):
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Login
+        style 
+            include ./my.css
+    body 
+        div(class='container')
+            include ./index.pug
+            h1 Login form
+            br
+            form(action="/Login" method="post" align="center")
+                label(for="username") username
+                input(type="text" name="username")
+                br
+                br
+                label(for="password") password
+                input(type="password" name="password")
+                br
+                br
+                input(type="submit" name="Login" value="Login")
+
+
+#########################################################
+register.pug( exp-8):
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Register
+        style 
+            include ./my.css
+    body 
+        div(class='container')
+            include ./index.pug
+            h1 Registration form
+            ul(id="errors")
+            br
+            form(action="/Register" method="post" align="center")
+                label(for="username") username
+                input(type="text" name="username")
+                br
+                br
+                label(for="password") password
+                input(type="password" name="password")
+                br
+                label(for="cpassword") Confirm password
+                input(type="password" name="cpassword")
+                br
+                br
+                label(for="age") user age
+                input(type="text" name="age")
+                br
+                br
+                label(for="mobile") user mobile
+                input(type="text" name="mobile")
+                br
+                br
+                label(for="email") user email
+                input(type="text" name="email")
+                br
+                br
+                input(type="submit" name="Register" value="Register")
+
+#########################################################
+my.css:
+
+h1{
+    color:blue;
+    text-align:center;
+}
+a:link,a:visited{
+    background-color: brown;
+    color:white;
+    padding:5px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover,a:active{
+    background-color: chartreuse;
+}
+.header {
+    padding: 10px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+  }
+  .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+
+  input{
+    width: 20%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  label{
+    color: blue;
+    font-size: 22px;
+    padding: 8px;
+    text-align:left;
+  }
+
+
+#########################################################
+
+app.js(for all):
+
+
+const express = require('express');
+const bodyparser=require("body-parser")
+const bcrypt=require("bcrypt");
+const user=require('./models/user');
+const mongoose = require('mongoose');
+const expressValidator = require("express-validator");
+const {check, validationResult} = require('express-validator/check')
+
+const app = express();
+const port = process.env.PORT || 3002
+mongoose.connect("mongodb://localhost:27017/user",{userNewUrlParser : true});
+app.set('view engine', 'pug');
+app.set('views','./views');
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended:true}));
+
+
+
+
+//handling get request
+
+app.get('/',function(req,res){
+
+res.render('index')
+})
+
+app.get('/Login',function(req,res){
+
+    res.render('Login')
+    })
+
+app.get('/Register',
+    function(req,res){
+      
+    res.render('Register')
+    })
+
+//handling post request
+
+app.post('/Register',
+[
+    check('username').not().isEmpty().isLength({min:5}).withMessage('User name must be 5 characters'),
+    check('password').not().isEmpty().isLength({min:6}).withMessage('Password name must be 6 characters'),
+    check('age').not().isEmpty().isInt().withMessage('age  must be integer'),
+    check('mobile').not().isEmpty().isInt().isLength({min:10}).withMessage('mobile number must be number and 10 characters'),
+    check('cpassword').custom((value,{req}) => (value === req.body.password)).withMessage("Confirm password not match with your password"),
+    check('email').not().isEmpty().isEmail().normalizeEmail().withMessage("Enter proper email"),
+],
+
+    function(req,res){
+        
+        const errors= validationResult(req);
+        if(!errors.isEmpty())
+        {
+            return res.status(422).jsonp(errors.array());
+        }
+        else{
+
+        //console.log(req.body.username)
+        const newUser=new user();
+        newUser.username=req.body.username;
+
+        
+        var salt=bcrypt.genSaltSync(10);
+        var hash=bcrypt.hashSync(req.body.password,salt);
+
+        newUser.password=hash;
+
+        newUser.age=req.body.age;
+        newUser.mobile=req.body.mobile;
+
+        newUser.save(function(err,result){
+
+            if(err){
+
+                console.log(err);
+            }
+            else{
+                console.log(result);
+                res.redirect("Login");
+            }
+            
+        })
+    
+    }
+
+    })
+
+    app.post('/Login',function(req,res){
+        
+        user.findOne({username:req.body.username},function(err,docs){
+            if(err)
+            {
+                console.log(err)
+            
+            }
+            else
+            {
+                if(docs.username==req.body.username)
+                {
+                    bcrypt.compare(req.body.password,docs.password,function(err,data)
+                    {
+                        if(err)
+                        {
+                            console.log(err);
+                        }
+                        if(data)
+                        {
+                            console.log(data);
+                            res.send("Welcome");
+                        }
+                        else
+                        {
+                            res.send("invalid password");
+                        }
+
+                    });
+                    
+
+                   
+                    
+                }
+                else
+                {
+                    //res.send("invalid username or password")
+                    res.redirect("Register");
+                }
+
+            }
+
+        })
+        
+
+        })
+    
+
+        app.get('/ajax', function(req, res){
+            res.render('ajax', {title: 'An Ajax Search', name: "Search user!"});
+        });
+        app.post('/ajax', function(req, res){
+
+            user.findOne({username:req.body.name},function(err,docs){
+                if(err)
+                {
+                    console.log(err)
+                
+                }
+                else
+                {
+                    
+                        res.render('ajax', {title: 'An Ajax search', name: "Name "+docs.username+", Age "+docs.age+", Mobile "+docs.mobile });
+                   
+                }
+            });
+              
+        
+
+           
+        });
+
+
+app.listen(port,() => {console.log(app is listening on http://localhost:${port})})
+
+
+
+#########################################################
+7,8(HBS)
+
+index.js
+
+const express=require("express")
+const app=express()
+const path=require("path")
+const hbs=require("hbs")
+const collection=require("./mongodb")
+const templatePath=path.join(__dirname,'../templates')
+app.use(express.json())
+app.set("view engine","hbs")
+app.set("views",templatePath)
+app.use(express.urlencoded({extended:false}))
+
+app.get("/", (req,res)=>{
+    res.render("login")
+})
+app.get("/signup", (req,res)=>{
+    res.render("signup")
+})
+app.post("/signup",async(req,res)=>{
+    
+    const data={
+        name:req.body.name,
+        password:req.body.password
+    }
+    await collection.insertMany([data])
+    res.render("home")
+})
+app.post("/login",async(req,res)=>{
+    try{
+    const check=await collection.findOne({name:req.body.name})
+        if(check.password===req.body.password)
+        {
+            res.render("home")
+        }
+        else{
+            res.send("wrong     ")
+        }
+    }
+    catch
+    {
+        res.send("Wrong Details")
+    }
+}) 
+app.listen(3000, ()=>{
+    console.log("Port Connected")
+})
+
+#########################################################
+mongodb.js
+
+const mongoose=require("mongoose")
+mongoose.connect("mongodb://localhost:27017/hbs1")
+.then(()=>{
+    console.log("Mongo db connected")
+})
+.catch(()=>{
+    console.log("failed")
+})
+
+const LoginSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    password:{
+        type:String,
+        required:true
+    }
+})
+
+const collection=new mongoose.model("collections1",LoginSchema)
+module.exports=collection
+
+#########################################################
+package.js
+
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "hbs": "^4.2.0",
+    "mongoose": "^8.3.1"
+  }
+}
+
+
+
+
